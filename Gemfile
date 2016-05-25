@@ -30,10 +30,19 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+# API base
+gem 'grape', '~>0.16.0'
+gem 'grape-swagger', '~>0.20.0'
+gem 'grape-swagger-rails'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
+
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
