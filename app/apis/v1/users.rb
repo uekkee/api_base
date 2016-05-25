@@ -49,16 +49,18 @@ end
     desc 'リソースの生成', {
       headers: AUTH_HEADER_DESCRIPTION,
       detail: <<-NOTE
-詳細をここに書く。
+非同期でユーザを作成する
       NOTE
     }
     params do
       requires :name, type: String, desc: 'ユーザ名'
     end
-    post do
-      status :created
+    post http_codes: [ [202, '非同期処理を受け付けた'] ] do
+      UserCreateJob.perform_later(params[:name])
 
-      { id: (rand*1000).to_i, name: params[:name] }
+      status :accepted
+
+      { message: "user create request accepted. name: #{params[:name]}" }
     end
   end
 

@@ -12,3 +12,23 @@
  * grape-swagger で出力されるAPI仕様書をベースに、Webの画面上で API 仕様及び APIの動作確認フォームを提供する
  * 本サンプルでは、http://localhost:3000/swagger で Webの画面が確認できる
 
+## 非同期処理ベース
+
+* resque
+ * ActiveJob をサポートする非同期バックエンドの一つ。
+ * 本サンプルでは http://localhost:3000/swagger#!/users/postUsers のAPIから、ActiveJob実装タスクを非同期でキックしている
+ * また、resque の処理状況を http://localhost:3000/resque で確認できる
+
+
+非同期処理 resque の起動方法
+
+```
+# redis を起動する
+
+$ redis-server
+
+# resque を起動する
+
+$ bundle install rake resque:worker
+```
+
